@@ -11,6 +11,7 @@
 #include "CTile.h"
 #include "CUI.h"
 #include "CButton.h"
+#include "CObj.h"
 
 #include "resource.h"
 
@@ -51,11 +52,12 @@ void CEditorLevel::tick()
 
 void CEditorLevel::render(HDC _dc)
 {
+
 	if (m_pTex!=nullptr)
 	{
 		Graphics g(_dc);
 		g.DrawImage(m_pTex->GetBit(), 0, 0);
-	}
+	}	
 }
 
 void CEditorLevel::Enter()
@@ -279,7 +281,7 @@ void CEditorLevel::LoadAtlas()
 	FinalFileName += L"texture\\";
 	FinalFileName +=FileName;
 
-	m_pTex = CResMgr::GetInst()->LoadTexture(L"AnimAtlas", FinalFileName);
+	m_pTex = CResMgr::GetInst()->LoadTexture(FileName, FinalFileName);
 
 }
 
@@ -337,6 +339,37 @@ INT_PTR CALLBACK TileCount(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam
 		}
 
 		break;
+	}
+	return (INT_PTR)FALSE;
+}
+
+// ======================
+// Anim Tool Dialog Proc
+// ======================
+INT_PTR CALLBACK Anim_Tool(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	UNREFERENCED_PARAMETER(lParam);
+	switch (message)
+	{
+	case WM_INITDIALOG:
+		return (INT_PTR)TRUE;
+
+	case WM_COMMAND:
+
+		if (LOWORD(wParam) == IDOK|| LOWORD(wParam) == IDCANCEL)
+		{
+			
+			DestroyWindow(hDlg);
+			hDlg = NULL;
+			return (INT_PTR)TRUE;
+		}
+		else if(LOWORD(wParam)== IDD_Texture_Key)
+		{
+			CLevel* pCurLevel = CLevelMgr::GetInst()->GetCurLevel();
+			((CEditorLevel*)pCurLevel)->LoadAtlas();
+		}
+		break;
+	
 	}
 	return (INT_PTR)FALSE;
 }

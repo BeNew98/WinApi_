@@ -137,6 +137,9 @@
     <Filter Include="Game\05. Component\FSM">
       <UniqueIdentifier>{d1a6149c-5a41-4280-b3cb-8e5edc9946e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\04. Object\Background">
+      <UniqueIdentifier>{5ccde9b2-2353-4986-8531-e2d9add5ebd3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -277,6 +280,9 @@
     <ClInclude Include="CSoundMgr.h">
       <Filter>Game\02. Manager\10. SoundMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CBackground.h">
+      <Filter>Game\04. Object\Background</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -415,6 +421,9 @@
     </ClCompile>
     <ClCompile Include="CSoundMgr.cpp">
       <Filter>Game\02. Manager\10. SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackground.cpp">
+      <Filter>Game\04. Object\Background</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

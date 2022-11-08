@@ -134,6 +134,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 }
 
 INT_PTR CALLBACK TileCount(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+INT_PTR CALLBACK Anim_Tool(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+HWND hDlg2 = NULL;
 
 
 // 메인 윈도우의 메세지 처리기 함수
@@ -161,9 +163,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_TILECOUNT), hWnd, TileCount);
             }
-            case ATLAS_LOAD:
+            case ANIM_TOOL:
             {
-               
+                if (!IsWindow(hDlg2))
+                {
+                    hDlg2 = CreateDialog(hInst, MAKEINTRESOURCE(IDD_ANIM_BOX), hWnd, Anim_Tool);
+                    ShowWindow(hDlg2, SW_SHOW);
+                }
             }
              
                 break;

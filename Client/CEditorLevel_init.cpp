@@ -13,6 +13,7 @@
 #include "CUI.h"
 #include "CPanelUI.h"
 #include "CButton.h"
+#include "CBackground.h"
 
 #include "resource.h"
 
